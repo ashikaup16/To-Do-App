@@ -17,6 +17,8 @@ A calm, responsive to-do and productivity app for planning your day, organizing 
 
 This is a static web app and does not require a build step or package installation. Open `index.html` in a browser, or serve the project directory with a local static-file server.
 
+When the local server is running on port 8001, open [http://localhost:8001/](http://localhost:8001/).
+
 ## Keyboard shortcuts
 
 | Shortcut | Action |

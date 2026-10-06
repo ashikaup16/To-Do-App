@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f8f5">
+    <meta name="description" content="A calmer way to plan your day, manage projects, and make time for focused work.">
+    <title>daymark — Make room for what matters.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 13h5l2 3h4l2-3h5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 14l1.1 2.9L23 18l-2.9 1.1L19 22l-1.1-2.9L15 18l2.9-1.1L19 14Z"/></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 6 10 6-10 6V6Z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m18 6-12 12M6 6l12 12"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
+    </svg>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="daymark home">
+          <span class="brand-mark"><svg class="icon"><use href="#i-spark"/></svg></span>
+          <span>daymark<span class="brand-period">.</span></span>
+        </a>
+        <div class="workspace-label">WORKSPACE <button class="icon-button tiny" aria-label="Workspace options"><svg class="icon"><use href="#i-more"/></svg></button></div>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="Today"><svg class="icon"><use href="#i-sun"/></svg><span>Today</span><span class="nav-count" id="today-count">0</span></button>
+          <button class="nav-item" data-view="Upcoming"><svg class="icon"><use href="#i-calendar"/></svg><span>Upcoming</span></button>
+          <button class="nav-item" data-view="All tasks"><svg class="icon"><use href="#i-grid"/></svg><span>All tasks</span></button>
+          <button class="nav-item" data-view="Completed"><svg class="icon"><use href="#i-check"/></svg><span>Completed</span></button>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <div class="section-heading"><span>YOUR PROJECTS</span><button class="icon-button tiny" id="add-project" aria-label="Add project"><svg class="icon"><use href="#i-plus"/></svg></button></div>
+        <nav class="project-nav" id="project-nav" aria-label="Projects"></nav>
+        <div class="sidebar-bottom">
+          <div class="streak-card"><div class="streak-icon">✳</div><div><strong>Little by little.</strong><p>Small steps add up to big things.</p></div></div>
+          <button class="profile-button"><span class="avatar">A</span><span class="profile-copy"><strong>Alex Morgan</strong><small>Free plan</small></span><svg class="icon profile-more"><use href="#i-more"/></svg></button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Open navigation"><svg class="icon"><use href="#i-grid"/></svg></button>
+          <div class="breadcrumb"><span>Workspace</span><svg class="icon"><use href="#i-chevron"/></svg><strong id="breadcrumb-view">Today</strong></div>
+          <div class="topbar-actions"><button class="search-button" id="search-open"><svg class="icon"><use href="#i-search"/></svg><span>Search anything...</span><kbd>⌘ K</kbd></button><button class="avatar small-avatar" aria-label="Your profile">A</button></div>
+        </header>
+
+        <div class="content-grid">
+          <section class="main-content">
+            <div class="greeting-row"><div><div class="eyebrow" id="today-date">YOUR TUESDAY, OCTOBER 6</div><h1 id="page-title">A fresh start<span>.</span></h1><p class="page-subtitle" id="page-subtitle">A little progress is still progress. Let's make today count.</p></div><div class="weather-mark" aria-hidden="true">☀</div></div>
+            <section class="progress-card" aria-label="Daily progress">
+              <div class="progress-top"><div><div class="progress-title"><svg class="icon"><use href="#i-target"/></svg><strong>Daily progress</strong></div><p id="progress-copy">A good day starts with a first step.</p></div><div class="progress-fraction"><strong id="progress-number">0</strong><span> / <span id="progress-total">0</span> done</span></div></div>
+              <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+              <div class="progress-footer"><span>YOU'RE BUILDING MOMENTUM</span><span id="progress-percent">0%</span></div>
+            </section>
+
+            <section class="task-section">
+              <div class="task-toolbar"><div class="task-heading"><h2 id="task-heading">Today's tasks</h2><span class="task-total" id="task-total">0</span></div><button class="filter-button" id="sort-toggle"><svg class="icon"><use href="#i-calendar"/></svg><span>Priority</span><span class="sort-caret">⌄</span></button></div>
+              <div class="task-tabs" id="task-tabs"><button class="task-tab active" data-filter="all">All <span id="tab-all-count">0</span></button><button class="task-tab" data-filter="open">To do <span id="tab-open-count">0</span></button><button class="task-tab" data-filter="completed">Completed <span id="tab-completed-count">0</span></button></div>
+              <div class="task-list" id="task-list"></div>
+              <button class="add-task-inline" id="add-task-inline"><span class="add-circle"><svg class="icon"><use href="#i-plus"/></svg></span> Add a task <span class="shortcut-hint">⌘ N</span></button>
+              <div class="empty-state hidden" id="empty-state"><span class="empty-illustration">✳</span><h3>A little breathing room.</h3><p>No tasks here right now. Enjoy the space or add something new.</p><button class="primary-button" id="empty-add"><svg class="icon"><use href="#i-plus"/></svg> Add a task</button></div>
+            </section>
+            <section class="quote-card"><div class="quote-mark">“</div><div><p>You don't have to see the whole staircase, just take the first step.</p><span>— MARTIN LUTHER KING JR.</span></div><span class="quote-spark">✳</span></section>
+          </section>
+
+          <aside class="right-panel">
+            <section class="focus-card"><div class="focus-heading"><span class="focus-heading-icon"><svg class="icon"><use href="#i-clock"/></svg></span><span>FOCUS SESSION</span><button class="icon-button tiny light-more" aria-label="Focus options"><svg class="icon"><use href="#i-more"/></svg></button></div><div class="focus-body"><p>A little focus goes a long way.</p><div class="timer-ring" id="timer-ring"><div class="timer-center"><span id="timer-display">25:00</span><small>MINUTES</small></div></div><div class="timer-caption" id="timer-caption">Ready when you are</div><button class="focus-button" id="timer-button"><svg class="icon" id="timer-button-icon"><use href="#i-play"/></svg><span id="timer-button-label">Start focusing</span></button><button class="reset-timer" id="timer-reset">Reset session</button></div><div class="focus-footer"><span>✳</span><span id="focus-sessions">0 sessions today</span><span class="focus-dots"><i></i><i></i><i></i><i></i></span></div></section>
+
+            <section class="up-next-card"><div class="side-heading"><div><h3>Coming up</h3><span>A peek at what's next</span></div><button class="icon-button tiny" id="see-upcoming" aria-label="See upcoming tasks"><svg class="icon"><use href="#i-arrow"/></svg></button></div><div id="upcoming-list" class="upcoming-list"></div><button class="view-calendar" id="view-upcoming">View upcoming tasks <svg class="icon"><use href="#i-chevron"/></svg></button></section>
+
+            <section class="week-card"><div class="side-heading"><div><h3>Your week</h3><span>A steady rhythm looks good on you.</span></div><span class="week-badge">THIS WEEK</span></div><div class="week-bars" id="week-bars"></div><div class="week-legend"><span><i></i> Tasks completed</span><strong id="week-summary">0 tasks this week</strong></div></section>
+            <div class="side-quote"><span>✳</span><p>Make space for the work that matters, and let the rest wait.</p></div>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop hidden" id="task-modal-backdrop">
+      <section class="task-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-header"><div><span class="modal-kicker">MAKE IT HAPPEN</span><h2 id="modal-title">Add a task</h2></div><button class="icon-button" id="modal-close" aria-label="Close dialog"><svg class="icon"><use href="#i-close"/></svg></button></div>
+        <form id="task-form"><label class="field-label" for="task-title">What needs doing?</label><input id="task-title" name="title" class="title-input" placeholder="A small step toward something good..." required maxlength="120" autocomplete="off"><label class="field-label" for="task-description">A few details <span>OPTIONAL</span></label><textarea id="task-description" name="description" placeholder="Add a note to your future self..." rows="3" maxlength="300"></textarea><div class="form-row"><label class="field-label" for="task-date">When</label><label class="field-label" for="task-priority">Priority</label></div><div class="form-row form-controls"><input id="task-date" name="date" type="date"><select id="task-priority" name="priority"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></div><label class="field-label" for="task-project">Project</label><select id="task-project" name="project"></select><div class="modal-footer"><span><kbd>Esc</kbd> to close</span><button type="submit" class="primary-button"><svg class="icon"><use href="#i-plus"/></svg> Create task</button></div></form>
+      </section>
+    </div>
+    <div class="modal-backdrop hidden" id="search-modal-backdrop">
+      <section class="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-title">
+        <div class="search-modal-heading"><svg class="icon"><use href="#i-search"/></svg><label id="search-title" for="search-input">Search your tasks</label><button class="icon-button" id="search-close" aria-label="Close search"><svg class="icon"><use href="#i-close"/></svg></button></div>
+        <input id="search-input" class="search-input" type="search" placeholder="Try a task, project, or note..." autocomplete="off">
+        <div class="search-results" id="search-results" aria-live="polite"></div>
+        <div class="search-footer"><span>Browse your tasks and projects</span><span><kbd>Esc</kbd> to close <kbd>↵</kbd> to search</span></div>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
